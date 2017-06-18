@@ -10,7 +10,6 @@ let player = document.getElementById("audio");
 
 // 2. Create your `onSubmit` event for getting the user's search term
 form.onsubmit = function onSubmit() {
-  console.log(form.search.value);
   event.preventDefault();
   searchSoundCloud(form.search.value);
 };
@@ -20,7 +19,6 @@ function searchSoundCloud(searchRequestString){
   fetch("http://api.soundcloud.com/tracks/?client_id=8538a1744a7fdaa59981232897501e04&q=" + searchRequestString)
   .then(function(response){
     response.json().then(function(data){
-      console.log(data);
       // clear the results
       document.getElementById("results").innerHTML='';
       // loop thru each element in the response data
@@ -45,7 +43,6 @@ function searchSoundCloud(searchRequestString){
         currentImage.addEventListener('click',function(event){
           // this should put the current stream URL into each
           player.src = currentDataElement.stream_url + "?client_id=8538a1744a7fdaa59981232897501e04";
-          console.log(player.src);
         });        
       }
     })
